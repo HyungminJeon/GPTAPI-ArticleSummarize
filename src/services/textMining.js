@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const rapidApiKey = import.meta.env.VITE_RAPID_API_ARTICLE_KEY;
 
-export const articleApi = createApi({
-    reducerPath: 'articleApi',
+export const textMiningApi = createApi({
+    reducerPath: 'textMiningApi',
     baseQuery: fetchBaseQuery({
         baseUrl: 'https://article-extractor-and-summarizer.p.rapidapi.com/',
         prepareHeaders: (headers) => {
@@ -17,9 +17,9 @@ export const articleApi = createApi({
         getSummary: builder.query({
             // encodeURIComponent() function encodes special characters that may be present in the parameter values
             // If we do not properly encode these characters, they can be misinterpreted by the server and cause errors or unexpected behavior. Thus that RTK bug
-            query: (params) => `summarize?url=${encodeURIComponent(params.articleUrl)}&length=3`,
+            query: (params) => `textMining?url=${encodeURIComponent(params.articleUrl)}&media=True&js_timeout=100&max_sentences`,
         }),
     }),
 })
 
-export const { useLazyGetSummaryQuery } = articleApi
+export const { textMiningQuery } = textMiningApi

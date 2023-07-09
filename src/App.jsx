@@ -1,5 +1,6 @@
-import Hero from "./components/Hero";
-import Demo from "./components/Demo";
+import MainPage from "./components/MainPage";
+import Summary from "./components/Summary";
+import TextMining from "./components/TextMining";
 
 import "./App.css";
 
@@ -11,8 +12,8 @@ const App = () => {
       </div>
 
       <div className='app'>
-        <Hero />
-        <Demo />
+        <MainPage />
+        <Summary />
       </div>
     </main>
   );

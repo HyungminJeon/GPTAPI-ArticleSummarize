@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
 import { copy, linkIcon, loader, tick } from "../assets";
-import { useLazyGetSummaryQuery } from "../services/article";
+import { textMiningQuery } from "../services/textMining";
 
-const Demo = () => {
+const TextMining = () => {
   const [article, setArticle] = useState({
     url: "",
     summary: "",
@@ -12,7 +12,7 @@ const Demo = () => {
   const [copied, setCopied] = useState("");
 
   // RTK lazy query
-  const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery();
+  const [getSummary, { error, isFetching }] = textMiningQuery();
 
   // Load data from localStorage on mount
   useEffect(() => {
@@ -24,7 +24,7 @@ const Demo = () => {
       setAllArticles(articlesFromLocalStorage);
     }
   }, []);
-
+  // API request
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -60,7 +60,7 @@ const Demo = () => {
   };
 
   return (
-    <section className='mt-16 w-full max-w-xl'>
+    <section className='mt-16 ml-24 w-full max-w-xl'>
       {/* Search */}
       <div className='flex flex-col w-full gap-2'>
         <form
@@ -119,7 +119,7 @@ const Demo = () => {
           <img src={loader} alt='loader' className='w-20 h-20 object-contain' />
         ) : error ? (
           <p className='font-inter font-bold text-black text-center'>
-            Well, that wasn't supposed to happen...
+            Request limit reached, please try again later...
             <br />
             <span className='font-satoshi font-normal text-gray-700'>
               {error?.data?.error}
@@ -144,4 +144,4 @@ const Demo = () => {
   );
 };
 
-export default Demo;
+export default TextMining;

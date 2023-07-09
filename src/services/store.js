@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { articleApi } from "./article";
+import { summarizeApi } from "./summarize";
 
 export const store = configureStore({
     reducer: {
-        [articleApi.reducerPath]: articleApi.reducer,
+        [summarizeApi.reducerPath]: summarizeApi.reducer,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(articleApi.middleware)
+    // We can add additional middleware to the store by passing it as an array to the middleware option
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(summarizeApi.middleware)
 })
